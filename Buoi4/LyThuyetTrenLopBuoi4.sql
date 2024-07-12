@@ -95,5 +95,56 @@ INSERT INTO SinhVien3(ma,sdt,ten)
 VALUES('123','1231',N'abcd');
 SELECT * FROM SinhVien3
 
+-- Tao bang SinhVien7 gom cac thuoc tinh:
+-- id - int , ten - nvarchar(100)
+-- Tao bang LopHoc gom cac thuoc tinh:
+-- id - UNIQUEIDENTIFIER, ma_lop - varchar(20)
+-- Tao bang SinhVienLopHoc gom cac thuoc tinh
+-- sinh_vien_id: INT , lop_hoc_id: UNIQUEIDENTIFIER, ma -varchar(10)
+-- Khoa chinh: 
+    -- SV: ID: Tu tang 
+    -- Lop hoc: ID: Tu gen 
+    -- SinhVienLopHoc : sinh_vien_id: INT , lop_hoc_id: UNIQUEIDENTIFIER
+-- Them du lieu vao moi bang. Moi bang 3 dong ban 
+CREATE TABLE SinhVien7(
+    id INT  IDENTITY,
+    ten NVARCHAR(100),
+    PRIMARY KEY (id)
+)
+CREATE TABLE LopHoc1(
+    id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    ma_lop VARCHAR(20)
+)
+-- 1 bang co 1 khoa chinh duy nhat 
+-- 1 bang co the nhieu thuoc tinh khoa chinh
+-- 1 bang co nhieu thuoc tinh
+CREATE TABLE SinhVienLopHoc111(
+    sinh_vien_id INT,
+    lop_hoc_id UNIQUEIDENTIFIER ,
+    ma VARCHAR(10),
+    -- C2: Khai bao khoa chinh
+    -- Dung trong truong hop khoa chinh co nhieu thuoc tinh
+    PRIMARY KEY (sinh_vien_id,lop_hoc_id)  
+)
+Khoa chinh (SinhVienID - LopHocID)
+/**
+    SinhVienID - LopHocID - Ma 
+    (1 - 83f9a0df-9125-48f8-9cbc-06998fe12121) - Ma 1
+    (2 - 83f9a0df-9125-48f8-9cbc-06998fe12121) - Ma 2
+    (2 - 83f9a0df-9125-48f8-9cbc-06998fe12123) - Ma 2
+    (3 - 83f9a0df-9125-48f8-9cbc-06998fe12123) - Ma 3
 
+*/
+INSERT INTO SinhVienLopHoc111
+VALUES
+    (2,'83f9a0df-9125-48f8-9cbc-06998fe12123','Ma1')
 
+SELECT * FROM SinhVienLopHoc111
+INSERT INTO SinhVien7
+VALUES
+    ('TEN')
+    SELECT * FROM SinhVien7
+INSERT INTO LopHoc1(ma_lop)
+VALUES
+    ('ma')
+    SELECT * FROM LopHoc1
